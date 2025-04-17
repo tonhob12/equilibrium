@@ -1,0 +1,76 @@
+[gd_scene load_steps=5 format=3 uid="uid://0m8uftvh4skv"]
+
+[ext_resource type="Script" uid="uid://c6rgqyqij0cft" path="res://play.gd" id="1_lti8b"]
+[ext_resource type="Script" uid="uid://vpif7fwtu5f5" path="res://exit.gd" id="1_ouk20"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_vsb4k"]
+font_size = 24
+
+[sub_resource type="LabelSettings" id="LabelSettings_lti8b"]
+font_size = 18
+font_color = Color(1, 1, 0.231373, 1)
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -66.925
+offset_top = 125.0
+offset_right = 67.075
+offset_bottom = 159.0
+grow_horizontal = 2
+text = "Equilibrium"
+label_settings = SubResource("LabelSettings_vsb4k")
+
+[node name="Label" type="Label" parent="Label"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -16.075
+offset_top = 33.0
+offset_right = 117.925
+offset_bottom = 67.0
+grow_horizontal = 2
+text = "Jam edition"
+label_settings = SubResource("LabelSettings_lti8b")
+
+[node name="play" type="Button" parent="Label"]
+layout_mode = 0
+offset_left = -100.075
+offset_top = 109.0
+offset_right = 243.925
+offset_bottom = 176.0
+text = "Play!"
+script = ExtResource("1_lti8b")
+
+[node name="exit" type="Button" parent="Label"]
+layout_mode = 0
+offset_left = -101.075
+offset_top = 221.0
+offset_right = 242.925
+offset_bottom = 288.0
+text = "Exit =("
+script = ExtResource("1_ouk20")
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 1108.0
+offset_top = 624.0
+offset_right = 1148.0
+offset_bottom = 647.0
+text = "V1.0"
+
+[connection signal="pressed" from="Label/play" to="Label/play" method="_on_pressed"]
+[connection signal="pressed" from="Label/exit" to="Label/exit" method="_on_pressed"]

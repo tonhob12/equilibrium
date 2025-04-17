@@ -1,0 +1,210 @@
+[gd_scene load_steps=19 format=3 uid="uid://bogbnyslc2odg"]
+
+[ext_resource type="Script" uid="uid://dpnd3oah1l33e" path="res://plane.gd" id="1_80nbo"]
+[ext_resource type="Script" uid="uid://d1e8s7meh4iwd" path="res://morte.gd" id="3_fc0e3"]
+[ext_resource type="Script" uid="uid://bfru7uka562bk" path="res://collision_shape_2d.gd" id="4_7jktm"]
+[ext_resource type="Script" uid="uid://r282ivbpdxfq" path="res://return.gd" id="4_eow3j"]
+[ext_resource type="Script" uid="uid://le1rki2lhfdd" path="res://exitgame.gd" id="4_ryrav"]
+[ext_resource type="Script" uid="uid://cjyy5wlvjbg67" path="res://tryaga.gd" id="5_eow3j"]
+[ext_resource type="Script" uid="uid://bqdr0gmqk1erc" path="res://exit2.gd" id="5_j5wjh"]
+
+[sub_resource type="PrismMesh" id="PrismMesh_mwb40"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_80nbo"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_80nbo"]
+radius = 52.0096
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_80nbo"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_80nbo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e2o6t"]
+size = Vector2(745, 25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eow3j"]
+size = Vector2(1.19651, 1.57656)
+
+[sub_resource type="LabelSettings" id="LabelSettings_feb5d"]
+font_size = 24
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7jktm"]
+bg_color = Color(0, 0, 0, 0.552941)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ryrav"]
+font_size = 80
+
+[sub_resource type="LabelSettings" id="LabelSettings_eow3j"]
+font_size = 50
+
+[node name="Node2D" type="Node2D"]
+
+[node name="tringle" type="RigidBody2D" parent="."]
+freeze = true
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="tringle"]
+position = Vector2(592.974, 409)
+rotation = 3.14159
+scale = Vector2(127.447, 60.5)
+mesh = SubResource("PrismMesh_mwb40")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="tringle"]
+polygon = PackedVector2Array(593, 379, 659, 439, 529, 439)
+
+[node name="circle" type="RigidBody2D" parent="."]
+position = Vector2(18, 0)
+mass = 0.001
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="circle"]
+position = Vector2(580, 202)
+scale = Vector2(104.118, 104)
+mesh = SubResource("SphereMesh_80nbo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="circle"]
+position = Vector2(580, 202)
+shape = SubResource("CircleShape2D_80nbo")
+
+[node name="plane" type="RigidBody2D" parent="."]
+mass = 10.0
+physics_material_override = SubResource("PhysicsMaterial_80nbo")
+script = ExtResource("1_80nbo")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="plane"]
+position = Vector2(594, 362)
+scale = Vector2(742.75, 24.25)
+mesh = SubResource("BoxMesh_80nbo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="plane"]
+position = Vector2(594.5, 361.5)
+shape = SubResource("RectangleShape2D_e2o6t")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(57, 58)
+script = ExtResource("3_fc0e3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(555, 531)
+scale = Vector2(1465.09, -83.7265)
+shape = SubResource("RectangleShape2D_eow3j")
+script = ExtResource("4_7jktm")
+
+[node name="GUI" type="CanvasLayer" parent="."]
+process_mode = 3
+
+[node name="return" type="Button" parent="GUI"]
+visible = false
+clip_contents = true
+custom_minimum_size = Vector2(199.825, 66.765)
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -78.0
+offset_top = -374.0
+offset_right = 121.825
+offset_bottom = -307.235
+grow_horizontal = 2
+grow_vertical = 0
+text = "Return"
+script = ExtResource("4_eow3j")
+
+[node name="exit" type="Button" parent="GUI"]
+visible = false
+clip_contents = true
+custom_minimum_size = Vector2(199.825, 66.765)
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -79.0
+offset_top = -284.0
+offset_right = 120.825
+offset_bottom = -217.235
+grow_horizontal = 2
+grow_vertical = 0
+text = "Exit =("
+script = ExtResource("5_j5wjh")
+
+[node name="Timer" type="Timer" parent="GUI"]
+
+[node name="Label" type="Label" parent="GUI/Timer"]
+offset_left = 973.0
+offset_top = 2.0
+offset_right = 1013.0
+offset_bottom = 36.0
+size_flags_horizontal = 8
+size_flags_vertical = 0
+label_settings = SubResource("LabelSettings_feb5d")
+
+[node name="fell" type="Label" parent="GUI"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -205.0
+offset_top = -174.0
+offset_right = 240.0
+offset_bottom = -64.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_styles/normal = SubResource("StyleBoxFlat_7jktm")
+text = "The ball fell"
+label_settings = SubResource("LabelSettings_ryrav")
+
+[node name="Label2" type="Label" parent="GUI/fell"]
+layout_mode = 0
+offset_top = 123.0
+offset_right = 40.0
+offset_bottom = 192.0
+label_settings = SubResource("LabelSettings_eow3j")
+
+[node name="exitgame" type="Button" parent="GUI/fell"]
+clip_contents = true
+custom_minimum_size = Vector2(199.825, 66.765)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -96.5
+offset_top = 170.0
+offset_right = 103.325
+offset_bottom = 236.765
+grow_horizontal = 2
+grow_vertical = 0
+text = "Exit =("
+script = ExtResource("4_ryrav")
+
+[node name="tryaga" type="Button" parent="GUI/fell"]
+clip_contents = true
+custom_minimum_size = Vector2(199.825, 66.765)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -96.5
+offset_top = 85.0
+offset_right = 103.325
+offset_bottom = 151.765
+grow_horizontal = 2
+grow_vertical = 0
+text = "Try again!"
+script = ExtResource("5_eow3j")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(572, 326)
+
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
+[connection signal="pressed" from="GUI/return" to="GUI/return" method="_on_pressed"]
+[connection signal="pressed" from="GUI/exit" to="GUI/exit" method="_on_pressed"]
+[connection signal="pressed" from="GUI/fell/exitgame" to="GUI/fell/exitgame" method="_on_pressed"]
+[connection signal="pressed" from="GUI/fell/exitgame" to="GUI/fell/tryaga" method="_on_exitgame_pressed"]
+[connection signal="pressed" from="GUI/fell/tryaga" to="GUI/fell/tryaga" method="_on_pressed"]
